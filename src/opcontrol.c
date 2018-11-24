@@ -9,6 +9,7 @@
 
 #include "main.h"
 #include "chassis.h"
+#include "claw.h"
 
 /*
  * Runs the user operator control code. This function will be started in its own task with the
@@ -34,6 +35,9 @@ void operatorControl() {
 		power = joystickGetAnalog(1, 2); // vertical axis on left joystick
 		turn = joystickGetAnalog(1, 1);  // horizontal axis on left joystick
 		chassisSet(power + turn, power - turn);
+
+		clawSet(joystickGetAnalog(1, 4));
+		
 		delay(20);
 	}
 }
