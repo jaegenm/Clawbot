@@ -34,5 +34,7 @@ void operatorControl() {
 		else {
 			liftSet(0);
 		}
+
+		delay (20);
 	}
 }
