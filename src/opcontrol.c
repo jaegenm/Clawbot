@@ -8,9 +8,6 @@
  */
 
 #include "main.h"
-#include "chassis.h"
-#include "claw.h"
-#include "lift.h"
 
 void operatorControl() {
 	int power;
