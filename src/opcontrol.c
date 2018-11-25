@@ -10,6 +10,7 @@
 #include "main.h"
 #include "chassis.h"
 #include "claw.h"
+#include "lift.h"
 
 /*
  * Runs the user operator control code. This function will be started in its own task with the
@@ -32,12 +33,26 @@ void operatorControl() {
 	int power;
 	int turn;
 	while (1) {
+
+		// Drive Train
 		power = joystickGetAnalog(1, 2); // vertical axis on left joystick
 		turn = joystickGetAnalog(1, 1);  // horizontal axis on left joystick
 		chassisSet(power + turn, power - turn);
 
+		// Claw
 		clawSet(joystickGetAnalog(1, 4));
-		
+
+		// Lift
+		if(joystickGetDigital(1, 6, JOY_UP)) {
+			liftSet(127);
+		}
+		else if(joystickGetDigital(1, 6, JOY_DOWN)) {
+			liftSet(-127);
+		}
+		else {
+			liftSet(0);
+		}
+
 		delay(20);
 	}
 }
