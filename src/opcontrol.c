@@ -7,8 +7,6 @@
  * obtained from http://sourceforge.net/projects/freertos/files/ or on request.
  */
 
-// Dummy comment
-
 #include "main.h"
 
 void operatorControl() {
