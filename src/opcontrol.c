@@ -8,13 +8,15 @@
  */
 
 #include "main.h"
-#include "chassis.h"
-#include "claw.h"
-#include "lift.h"
 
 void operatorControl() {
 	int power;
 	int turn;
+
+	// This needs to be called just before the while loop, so that "t" is initialized
+	// to the actual time before entering the loop.
+	unsigned long t = millis();
+
 	while (1) {
 		// Drive Train
 		power = joystickGetAnalog(1, 2); // vertical axis on left joystick
@@ -35,6 +37,6 @@ void operatorControl() {
 			liftSet(0);
 		}
 
-		delay (20);
+		taskDelayUntil(&t, 20);
 	}
 }
